@@ -14,7 +14,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, { payload }) => {
-      state.loggedUser = payload;
+      if (payload === "") {
+        state.loggedUser = null;
+      } else {
+        state.loggedUser = payload;
+      }
     }
   }
 });

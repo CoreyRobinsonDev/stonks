@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import { useAppSelector } from "../util/hooks";
@@ -22,7 +22,7 @@ const Register = () => {
     .catch((err) => setAlert(err.response.data))
   }
   return <section className="container">
-    {user && <Navigate to="/portfolio" />}
+    {user && <Navigate to="/home" />}
     <h1 className="title">Register</h1>
     <form className="form__container" onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="username">Username:</label>
@@ -34,6 +34,10 @@ const Register = () => {
       <input type="submit" value="Register" />
     </form>
     <span>{alert}</span>
+    <div>
+      <p>Already have an account?</p>
+      <Link to="/">Log In</Link>
+    </div>
   </section>
 }
 export default Register;

@@ -8,6 +8,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Quote from "../pages/Quote";
 import Portfolio from "../pages/Portfolio";
+import Home from "../pages/Home";
+import Navbar from "../components/Navbar";
 import Error from "../pages/Error";
 import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { setUser } from "../features/userSlice"; 
@@ -25,10 +27,12 @@ function App() {
   return <>
     <header>
       <h1>STØNKS</h1>
+      <Navbar/>
     </header>
     <main>
       <Routes>
         {user && <>
+          <Route path="/home" element={<Home/>} />
           <Route path="/portfolio" element={<Portfolio/>} />
           <Route path="/buy" element={<Buy/>} />
           <Route path="/sell" element={<Sell/>} />
