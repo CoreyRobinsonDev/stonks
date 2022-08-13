@@ -5,7 +5,7 @@ export type User = {
   balance: number
 }
 
-type GroupedDailyBarsResults = {
+export type GroupedDailyBarsResults = {
   T: string,
   c: number,
   h: number,
