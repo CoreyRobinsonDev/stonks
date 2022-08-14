@@ -27,7 +27,7 @@ function App() {
   return <>
     <header>
       <h1>STØNKS</h1>
-      <Navbar/>
+      {user && <Navbar/>}
     </header>
     <main>
       <Routes>

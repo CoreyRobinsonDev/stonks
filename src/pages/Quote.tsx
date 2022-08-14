@@ -8,6 +8,7 @@ const Quote = () => {
   const [ticker, setTicker] = useState("");
   const [tickerDetails, setTickerDetails] = useState();
   const [tickerNews, setTickerNews] = useState();
+  const [alert, setAlert] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,13 +17,16 @@ const Quote = () => {
         setTickerDetails(res.data.tickerDetails);
         setTickerNews(res.data.tickerNews);
     })
+      .catch((err) => setAlert(err.response.data))
   }
   
   return <section>
     <form onSubmit={(e) => handleSubmit(e)}>
-      <input type="text" onChange={(e) => setTicker(e.target.value)} required />
+      <label htmlFor="ticker">Enter Ticker:</label>
+      <input id="ticker" type="text" onChange={(e) => setTicker(e.target.value)} required />
       <input type="submit" value="Enter" />
     </form>
+    {alert}
     <TickerDetails details={tickerDetails} />
     <TickerNews news={tickerNews} />
   </section>

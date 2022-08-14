@@ -47,7 +47,7 @@ const Home = () => {
         </tr>
       </thead>
       <tbody>
-        {results ? results?.map(result => <tr>
+        {results ? results?.map((result, key) => <tr key={key}>
           <td>{result.T}</td>
           <td>{result.o}</td>
           <td>{result.c}</td>
@@ -57,7 +57,7 @@ const Home = () => {
           <td>{result.v}</td>
           <td>{result.vw}</td>
         </tr>)
-        : "Loading..."}
+        : <tr><td><em>Loading...</em></td></tr>}
       </tbody>
     </table>
     <button onClick={() => dispatch(advanceGroupedDailyBarsLimited())}>Show More</button>
