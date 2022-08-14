@@ -118,5 +118,6 @@ export type TickerDetails = {
   "type": "CS",
   "weighted_shares_outstanding": 16334371000
  },
- "status": "OK"
+  "status": "OK",
+  close: string
 }

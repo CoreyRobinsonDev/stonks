@@ -5,11 +5,13 @@ type Props = {
 }
 const TickerDetails: React.FC<Props> = ({ details }) => {
   const result = details?.results;
+  console.log(details)
 
   return <>
     {result ?
     <div>
       <img src={result?.branding?.icon_url} alt="Branding icon" />
+      <h2>{details?.close} <small>{result?.currency_name}</small></h2>
       <h1>{result?.name}</h1>
       <p>{result?.sic_description}</p>
       <a href={result?.homepage_url} target="_blank" rel="noreferrer">{result?.homepage_url}</a>
