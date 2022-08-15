@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { setUser } from "../features/userSlice";
 
 const Login = () => {
-  const [username, setUsername] = useState<null | string>(null);
-  const [password, setPassword] = useState<null | string>(null);
+  const [username, setUsername] = useState<string>("Guest");
+  const [password, setPassword] = useState<string>("guest");
   const user = useAppSelector(state => state.user.loggedUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -22,6 +22,10 @@ const Login = () => {
       navigate("/home");
     })
   }
+  const setGuest = () => {
+    setUsername("Guest");
+    setPassword("guest")
+  }
 
   return <section>
     {user && <Navigate to="/home" />}
@@ -32,6 +36,7 @@ const Login = () => {
       <label htmlFor="password">Password:</label>
       <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
       <input type="submit" value="Log In" />
+      <button onClick={setGuest}>Continue as "Guest"</button>
     </form>
     <div>
       <p>Don't have an account?</p>
