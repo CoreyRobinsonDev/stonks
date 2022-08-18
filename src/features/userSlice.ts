@@ -19,9 +19,12 @@ const userSlice = createSlice({
       } else {
         state.loggedUser = payload;
       }
+    },
+    updateBalance: (state, { payload }) => {
+      state.loggedUser!.balance! = payload;      
     }
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, updateBalance } = userSlice.actions;
 export const userReducer = userSlice.reducer; 

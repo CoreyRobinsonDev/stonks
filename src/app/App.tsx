@@ -10,6 +10,7 @@ import Quote from "../pages/Quote";
 import Portfolio from "../pages/Portfolio";
 import Home from "../pages/Home";
 import Navbar from "../components/Navbar";
+import Settings from "../pages/Settings";
 import Error from "../pages/Error";
 import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { setUser } from "../features/userSlice"; 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/buy" element={<Buy/>} />
           <Route path="/sell" element={<Sell/>} />
           <Route path="/quote" element={<Quote/>} />
+          <Route path="/settings" element={<Settings/>} />
         </>}
         <Route path="/" element={<Login/>} />
         <Route path="/register" element={<Register/>} />

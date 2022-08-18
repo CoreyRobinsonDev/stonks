@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 
-import { useAppSelector } from "../util/hooks";
+import { useAppSelector, useAppDispatch } from "../util/hooks";
+import { updateBalance } from "../features/userSlice";
 
 const Buy = () => {
   const [symbol, setSymbol] = useState<null | string>(null);
   const [shares, setShares] = useState<null | string>(null);
   const [message, setMessage] = useState("");
   const userId = useAppSelector(state => state.user.loggedUser?.id);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,11 +17,13 @@ const Buy = () => {
       user_id: userId,
       num_shares: shares,
       symbol: symbol?.toUpperCase()
-    }).then((res) => setMessage(res.data))
+    }).then((res) => {
+      setMessage(res.data.message);
+      dispatch(updateBalance(res.data.balance));
+    })
     .catch((err) => setMessage(err.response.data))
   }
   
-
   return <section>
     <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="symbol">Ticker Symbol:</label>

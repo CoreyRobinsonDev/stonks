@@ -24,7 +24,7 @@ const Login = () => {
   }
   const setGuest = () => {
     setUsername("Guest");
-    setPassword("guest")
+    setPassword("guest");
   }
 
   return <section>
