@@ -8,16 +8,19 @@ const Buy = () => {
   const [symbol, setSymbol] = useState<null | string>(null);
   const [shares, setShares] = useState<null | string>(null);
   const [message, setMessage] = useState("");
+  const [isPending, setIsPending] = useState(false);
   const userId = useAppSelector(state => state.user.loggedUser?.id);
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsPending(true);
     axios.post("/stocks/buy", {
       user_id: userId,
       num_shares: shares,
-      symbol: symbol?.toUpperCase()
+      symbol: symbol?.trim().toUpperCase()
     }).then((res) => {
+      setIsPending(false);
       setMessage(res.data.message);
       dispatch(updateBalance(res.data.balance));
     })
@@ -32,7 +35,7 @@ const Buy = () => {
       <input id="shares" type="number" onChange={(e) => setShares(e.target.value)} />
       <input type="submit" value="Buy" />
     </form>
-    <span>{message}</span>
+    <span>{isPending ? "Processing..." : message}</span>
   </section>
 }
 export default Buy;

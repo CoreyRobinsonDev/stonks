@@ -5,6 +5,14 @@ export type User = {
   balance: number
 }
 
+export type Data = {
+    symbol: string,
+    shares: number,
+    price: number
+}
+  
+export type PortfolioType = Data[]
+
 export type GroupedDailyBarsResults = {
   T: string,
   c: number,
