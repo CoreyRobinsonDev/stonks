@@ -23,22 +23,21 @@ const Buy = () => {
       setIsPending(false);
       setMessage(res.data.message);
       dispatch(updateBalance(res.data.balance));
+    }).catch((err) => {
+      setIsPending(false);
+      setMessage(err.response.data)
     })
-      .catch((err) => {
-        setIsPending(false);
-        setMessage(err.response.data)
-      })
   }
   
   return <section>
     <form onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="symbol">Ticker Symbol:</label>
-      <input id="symbol" type="text" placeholder="Ticker Symbol" onChange={(e) => setSymbol(e.target.value)} required />
-      <label htmlFor="shares">Number of Shares:</label>
-      <input id="shares" type="number" onChange={(e) => setShares(e.target.value)} required />
+      <label htmlFor="symbol">Ticker Symbol: </label>
+      <input id="symbol" type="text" onChange={(e) => setSymbol(e.target.value)} required />
+      <label htmlFor="shares">Number of Shares: </label>
+      <input id="shares" type="number" min="1" onChange={(e) => setShares(e.target.value)} required />
       <input type="submit" value="Buy" />
     </form>
-    <span>{isPending ? "Processing..." : message}</span>
+    <span>{isPending ? <em>Processing...</em> : message}</span>
   </section>
 }
 export default Buy;

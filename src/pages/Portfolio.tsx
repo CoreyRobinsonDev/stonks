@@ -1,7 +1,7 @@
 
 
 import AccountDetails from "../components/AccountDetails";
-import Pie from "../components/Pie";
+import Doughnut from "../components/Doughnut";
 
 
 const Portfolio = () => {
@@ -11,7 +11,7 @@ const Portfolio = () => {
 
   return <section>
     <AccountDetails />
-    <Pie/>
+    <Doughnut/>
   </section>
 }
 export default Portfolio;
