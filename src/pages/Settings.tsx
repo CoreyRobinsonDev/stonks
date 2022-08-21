@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../util/hooks";
-import { setUser } from "../features/userSlice";
+import { setUser } from "../app/features/userSlice";
 
 const Settings = () => {
   const navigate = useNavigate();

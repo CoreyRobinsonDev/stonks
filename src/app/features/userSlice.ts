@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../util/types";
+import { User } from "../../util/types";
 
 type SliceState = {
   loggedUser: User | null

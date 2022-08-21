@@ -3,7 +3,7 @@ import { useNavigate, Navigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "../util/hooks";
-import { setUser } from "../features/userSlice";
+import { setUser } from "../app/features/userSlice";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("Guest");

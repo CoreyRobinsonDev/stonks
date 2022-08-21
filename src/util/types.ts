@@ -14,23 +14,14 @@ export type Data = {
 export type PortfolioType = Data[]
 
 export type GroupedDailyBarsResults = {
-  T: string,
-  c: number,
-  h: number,
-  l: number,
-  n: number,
-  o: number,
-  t: number,
-  v: number,
-  vw: number
-} 
-
-export type GroupedDailyBars = {
-  adjusted: boolean,
-  queryCount: number,
-  results: GroupedDailyBarsResults[],
-  resultsCount: number,
-  status: string
+  symbol: string,
+  close: number,
+  high: number,
+  low: number,
+  num_transactions: number,
+  open: number,
+  volume: number,
+  volume_weighted_price: number
 }
 
 export type TickerNews = {

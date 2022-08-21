@@ -13,7 +13,7 @@ import Navbar from "../components/Navbar";
 import Settings from "../pages/Settings";
 import Error from "../pages/Error";
 import { useAppDispatch, useAppSelector } from "../util/hooks";
-import { setUser } from "../features/userSlice"; 
+import { setUser } from "./features/userSlice"; 
 import './App.css';
 
 function App() {

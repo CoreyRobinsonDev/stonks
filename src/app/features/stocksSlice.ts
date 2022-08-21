@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GroupedDailyBars, GroupedDailyBarsResults } from "../util/types";
+import { GroupedDailyBarsResults } from "../../util/types";
 
 
 type SliceState = {
   groupedDailyBars: {
     sortBy: string,
     index: number,
-    all: GroupedDailyBars | null,
+    all: GroupedDailyBarsResults[] | null,
     limitedResults: GroupedDailyBarsResults[] | null
   } 
 }
 
 const initialState: SliceState = {
   groupedDailyBars: {
-    sortBy: "ticker",
+    sortBy: "",
     index: 100,
     all: null,
     limitedResults: null
@@ -26,11 +26,11 @@ const stocksSlice = createSlice({
   reducers: {
     setGroupedDailyBars: (state, { payload }) => {
       state.groupedDailyBars.all = payload;
-      state.groupedDailyBars.limitedResults = state.groupedDailyBars.all!.results.slice(0, state.groupedDailyBars.index).sort((a,b) => a.T.localeCompare(b.T))
+      state.groupedDailyBars.limitedResults = payload.slice(0, state.groupedDailyBars.index);
     },
     advanceGroupedDailyBarsLimited: (state) => {
       state.groupedDailyBars.index += 100;
-      state.groupedDailyBars.limitedResults = state.groupedDailyBars.all!.results.slice(0, state.groupedDailyBars.index);
+      state.groupedDailyBars.limitedResults = state.groupedDailyBars.all!.slice(0, state.groupedDailyBars.index);
     },
     sortBy: (state, {payload}) => {
       const currentSort = state.groupedDailyBars.sortBy;
@@ -39,58 +39,58 @@ const stocksSlice = createSlice({
       switch (sort) {
         case "close":
           if (currentSort === "close") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.c - a.c);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.close - a.close);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.c - b.c);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.close - b.close);
           }
           break;
         case "open":
           if (currentSort === "open") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.o - a.o);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.open - a.open);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.o - b.o);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.open - b.open);
           }
           break;
         case "high":
           if (currentSort === "high") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.h - a.h);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.high - a.high);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.h - b.h);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.high - b.high);
           }
           break;
         case "low":
           if (currentSort === "low") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.l - a.l);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.low - a.low);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.l - b.l);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.low - b.low);
           }
           break;
         case "volume":
           if (currentSort === "volume") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.v - a.v);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.volume - a.volume);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.v - b.v);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.volume - b.volume);
           }
           break;
         case "price":
           if (currentSort === "price") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.vw - a.vw);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.volume_weighted_price - a.volume_weighted_price);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.vw - b.vw);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.volume_weighted_price - b.volume_weighted_price);
           }
           break;
         case "transactions":
           if (currentSort === "transactions") {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => b.n - a.n);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => b.num_transactions - a.num_transactions);
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a, b) => a.n - b.n);
+            state.groupedDailyBars.limitedResults?.sort((a, b) => a.num_transactions - b.num_transactions);
           }
           break;
         default:
           if (currentSort === "ticker") {
-            state.groupedDailyBars.limitedResults?.sort((a,b) => b.T.localeCompare(a.T));
+            state.groupedDailyBars.limitedResults?.sort((a,b) => b.symbol.localeCompare(a.symbol));
           } else {
-            state.groupedDailyBars.limitedResults?.sort((a,b) => a.T.localeCompare(b.T));
+            state.groupedDailyBars.limitedResults?.sort((a,b) => a.symbol.localeCompare(b.symbol));
           }
       }
 
