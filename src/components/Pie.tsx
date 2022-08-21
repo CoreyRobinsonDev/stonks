@@ -19,14 +19,13 @@ const Pie = () => {
     .then((res) => setPortfolio(res.data))
   }, [user])
 
-  console.log(active)
   return <svg width={width} height={width}>
     <Group top={half} left={half}>
       <VPie
         data={portfolio}
         pieValue={(data) => data.shares * data.price}
         outerRadius={half}
-        innerRadius={({data}) => half - (active && active?.symbol === data.symbol ? 24 : 12)}
+        innerRadius={({data}) => half - (active && active?.symbol === data.symbol ? 48 : 24)}
         padAngle={0.01}
       >
         {(pie) => {
@@ -34,17 +33,28 @@ const Pie = () => {
             onMouseEnter={() => setActive(arc.data)}
             onMouseLeave={() => setActive(null)}
           >
-            <path d={pie.path(arc)} fill={`rgba(255, 123, 12, ${Math.min(Math.max(((arc.data.shares * arc.data.price)/1000), 1))})`}></path>
+            <path d={pie.path(arc)} fill={arc.data.color}></path>
           </g>)
         }}
       </VPie>
       {active
-        ? <Text textAnchor="middle" fill="#333" fontSize={40}>
-          {`$${(active.shares * active.price).toLocaleString("en-US")}`}
-        </Text>
-        :<Text textAnchor="middle" fill="#333" fontSize={40}>
-        {`${portfolio?.length} assets`} 
-      </Text>}
+        ? <>
+          <Text textAnchor="middle" fill="#333" fontSize={40} dy={-20}>
+            {`$${(active.shares * active.price).toLocaleString("en-US")}`}
+          </Text>
+          <Text textAnchor="middle" fill={active.color} fontSize={25} dy={20}>
+            {`${active.shares} ${active.symbol}`}
+          </Text>
+        </>
+        : <>
+          <Text textAnchor="middle" fill="#333" fontSize={40} dy={-20}>
+            {`$${portfolio?.reduce((acc, stock) => acc + (stock.price * stock.shares), 0)}`} 
+          </Text>
+          <Text textAnchor="middle" fill="#333" fontSize={25} dy={20}>
+            {`${portfolio?.length} Assets`}
+          </Text>
+        </>
+      }
     </Group>
   </svg>
 }

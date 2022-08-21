@@ -6,9 +6,10 @@ export type User = {
 }
 
 export type Data = {
-    symbol: string,
-    shares: number,
-    price: number
+  symbol: string,
+  shares: number,
+  price: number,
+  color: string  
 }
   
 export type PortfolioType = Data[]
