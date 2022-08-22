@@ -6,7 +6,7 @@ type Props = {
 
 const TickerNews: React.FC<Props> = ({ news }) => {
   const result = news?.results;
-  console.log(news)
+
   return <section>
     {result ?
       result?.map((story) => <article>

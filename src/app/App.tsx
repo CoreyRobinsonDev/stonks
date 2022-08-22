@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -19,15 +19,17 @@ import './App.css';
 function App() {
   const user = useAppSelector(state => state.user.loggedUser);
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     axios.get("/user/getLoggedUser")
       .then((res) => dispatch(setUser(res.data)))
   }, [dispatch])
 
+  
   return <>
-    <header>
-      <h1>STØNKS</h1>
+    <header className="app__header">
+      <h1>{location.pathname === "/home" || location.pathname === "/" ? "STØNKS" : location.pathname.slice(1).replace(/^./, location.pathname.slice(1)[0].toUpperCase())}</h1>
       {user && <Navbar/>}
     </header>
     <main>
@@ -46,7 +48,7 @@ function App() {
       </Routes>
     </main>
     <footer>
-
+      <small>This site was created for educational purposes and is not meant to be a functional service. All data is provided by Polygon.io's free api, which is limited to 5 requests per minute.</small>
     </footer>
   </>
 }

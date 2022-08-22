@@ -34,7 +34,7 @@ const stocksSlice = createSlice({
     },
     sortBy: (state, {payload}) => {
       const currentSort = state.groupedDailyBars.sortBy;
-      const sort = payload;
+      let sort = payload;
 
       switch (sort) {
         case "close":
@@ -93,7 +93,7 @@ const stocksSlice = createSlice({
             state.groupedDailyBars.limitedResults?.sort((a,b) => a.symbol.localeCompare(b.symbol));
           }
       }
-
+      if (sort === state.groupedDailyBars.sortBy) sort += "-inverted"
       state.groupedDailyBars.sortBy = sort;
     }
   }

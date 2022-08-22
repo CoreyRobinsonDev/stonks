@@ -3,6 +3,9 @@ import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { advanceGroupedDailyBarsLimited, setGroupedDailyBars, sortBy } from "../app/features/stocksSlice";
+import GDBarsCSS from "../modules/GroupedDailyBars.module.css";
+
+const { container, table, table__head, table__body, btn } = GDBarsCSS;
 
 const GroupedDailyBars = () => {
   const results = useAppSelector(state => state.stocks.groupedDailyBars?.limitedResults);
@@ -12,9 +15,10 @@ const GroupedDailyBars = () => {
     axios.get("/stocks/groupedDailyBars")
     .then((res) => dispatch(setGroupedDailyBars(res.data)))
   }, [dispatch])
-  return <section>
-    <table>
-      <thead>
+
+  return <section className={container}>
+    <table className={table}>
+      <thead className={table__head}>
         <tr>
           <th onClick={() => dispatch(sortBy("ticker"))}>Ticker</th>
           <th onClick={() => dispatch(sortBy("open"))}>Open</th>
@@ -26,7 +30,7 @@ const GroupedDailyBars = () => {
           <th onClick={() => dispatch(sortBy("price"))}>Volume Weighted Price</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className={table__body}>
         {results ? results?.map((result, key) => <tr key={key}>
           <td>{result.symbol}</td>
           <td>${result.open.toLocaleString("en-US")}</td>
@@ -40,7 +44,7 @@ const GroupedDailyBars = () => {
         : <tr><td><em>Loading...</em></td></tr>}
       </tbody>
     </table>
-    <button onClick={() => dispatch(advanceGroupedDailyBarsLimited())}>Show More</button>
+    <button className={btn} onClick={() => dispatch(advanceGroupedDailyBarsLimited())}>+</button>
   </section>
 }
 export default GroupedDailyBars; 

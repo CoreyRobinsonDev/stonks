@@ -1,0 +1,41 @@
+.container {
+  background-color: white;
+  padding: 1rem;
+  width: 90vw;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.table__head {
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.table__head tr th {
+  border-bottom: 1px solid;
+}
+
+
+.table__body td {
+  text-align: center;
+}
+
+.btn {
+  width: 90%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: .5rem;
+  margin: 2rem 0 1rem 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(57, 101, 61, 0.8);
+}
+
+.btn:active {
+  transform: translateY(-2px);
+  box-shadow: none;
+}

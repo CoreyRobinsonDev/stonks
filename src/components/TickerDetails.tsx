@@ -5,7 +5,6 @@ type Props = {
 }
 const TickerDetails: React.FC<Props> = ({ details }) => {
   const result = details?.results;
-  console.log(details)
 
   return <>
     {result ?

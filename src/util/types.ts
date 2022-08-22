@@ -5,6 +5,13 @@ export type User = {
   balance: number
 }
 
+export type History = {
+  symbol: string,
+  price: number,
+  num_shares: number,
+  transaction_type: string
+}
+
 export type Data = {
   symbol: string,
   shares: number,
