@@ -16,18 +16,25 @@ const GroupedDailyBars = () => {
     .then((res) => dispatch(setGroupedDailyBars(res.data)))
   }, [dispatch])
 
+  
+  const handleClick = (e: any, sort: string) => {
+    e.target.parentNode.childNodes.forEach((node: any) => node.style.color = "#333");
+    e.target.style.color = "#ED992A";
+    dispatch(sortBy(sort));
+  }
+
   return <section className={container}>
     <table className={table}>
       <thead className={table__head}>
         <tr>
-          <th onClick={() => dispatch(sortBy("ticker"))}>Ticker</th>
-          <th onClick={() => dispatch(sortBy("open"))}>Open</th>
-          <th onClick={() => dispatch(sortBy("close"))}>Close</th>
-          <th onClick={() => dispatch(sortBy("high"))}>High</th>
-          <th onClick={() => dispatch(sortBy("low"))}>Low</th>
-          <th onClick={() => dispatch(sortBy("transactions"))}># of Transactions</th>
-          <th onClick={() => dispatch(sortBy("volume"))}>Trading Volume</th>
-          <th onClick={() => dispatch(sortBy("price"))}>Volume Weighted Price</th>
+          <th onClick={(e) => handleClick(e, "ticker")}>Ticker</th>
+          <th onClick={(e) => handleClick(e, "open")}>Open</th>
+          <th onClick={(e) => handleClick(e, "close")}>Close</th>
+          <th onClick={(e) => handleClick(e, "high")}>High</th>
+          <th onClick={(e) => handleClick(e, "low")}>Low</th>
+          <th onClick={(e) => handleClick(e, "transactions")}># of Transactions</th>
+          <th onClick={(e) => handleClick(e, "volume")}>Trading Volume</th>
+          <th onClick={(e) => handleClick(e, "price")}>Volume Weighted Price</th>
         </tr>
       </thead>
       <tbody className={table__body}>
