@@ -11,7 +11,8 @@ const Doughnut = () => {
   const user = useAppSelector(state => state.user.loggedUser);
   const [portfolio, setPortfolio] = useState<PortfolioType>();
   const [active, setActive] = useState<Data | null>(null);
-  const width = 400;
+  let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  width = width > 1400 ? width / 3 : width / 1.1;
   const half = width / 2;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const Doughnut = () => {
         data={portfolio}
         pieValue={(data) => data.shares * data.price}
         outerRadius={half}
-        innerRadius={({data}) => half - (active && active?.symbol === data.symbol ? 48 : 24)}
+        innerRadius={({data}) => half - (active && active?.symbol === data.symbol ? (width / 8) : (width / 16))}
         padAngle={0.01}
       >
         {(pie) => {
@@ -39,18 +40,18 @@ const Doughnut = () => {
       </Pie>
       {active
         ? <>
-          <Text textAnchor="middle" fill="#333" fontSize={40} dy={-20}>
+          <Text textAnchor="middle" fill="#333" fontSize={width / 8} dy={-(width / 50)}>
             {`$${(active.shares * active.price).toLocaleString("en-US")}`}
           </Text>
-          <Text textAnchor="middle" fill={active.color} fontSize={25} dy={20}>
+          <Text textAnchor="middle" fill={active.color} fontSize={width / 16} dy={width / 10}>
             {`${active.shares} ${active.symbol}`}
           </Text>
         </>
         : <>
-          <Text textAnchor="middle" fill="#333" fontSize={40} dy={-20}>
+          <Text textAnchor="middle" fill="#333" fontSize={width / 8} dy={-(width / 50)}>
             {`$${portfolio?.reduce((acc, stock) => acc + (stock.price * stock.shares), 0).toLocaleString("en-US")}`} 
           </Text>
-          <Text textAnchor="middle" fill="#333" fontSize={25} dy={20}>
+          <Text textAnchor="middle" fill="#333" fontSize={width / 16} dy={width / 10}>
             {`${portfolio?.length} Assets`}
           </Text>
         </>

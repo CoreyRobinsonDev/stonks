@@ -1,0 +1,46 @@
+.container {
+  padding: 2rem;
+}
+
+.form {
+  position: relative;
+  bottom: 6rem;
+  margin-bottom: -6rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: var(--radius);
+  width: minmax(fit-content 100vw);
+  box-shadow: 1px 2px 10px rgb(0, 0, 0, 0.2);
+}
+
+.form__input {
+  font-size: 2rem;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0 .5rem;
+  margin-right: 2rem;
+}
+
+.form__input::placeholder {
+  font-family: "Roboto Mono", monospace;
+}
+
+.form__submit {
+  font-size: 2rem;
+  font-family: "Roboto Mono", monospace;
+  border: none;
+  border-bottom: 1px solid;
+  background-color: white;
+}
+
+.form__alert {
+  color: red;
+  margin-top: 1rem;
+}
+
+.quote__body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}

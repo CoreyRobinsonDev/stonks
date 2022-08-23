@@ -5,7 +5,7 @@ import { useAppSelector } from "../util/hooks";
 import { History } from "../util/types";
 import RecentActivityCSS from "../modules/RecentActivity.module.css";
 
-const { container, list, title } = RecentActivityCSS;
+const { container, list, title, list__time, btn } = RecentActivityCSS;
 
 const RecentActivity = () => {
   const user = useAppSelector(state => state.user.loggedUser);
@@ -21,12 +21,25 @@ const RecentActivity = () => {
     })
   }, [user])
 
+  const fetchAll = (e: any) => {
+    setIsPending(true);
+    e.target.style.display = "none";
+
+    axios.post("/user/getAllHistory", { user_id: user?.id })
+      .then((res) => {
+        setIsPending(false);
+        setHistory(res.data);
+    })
+  }
+
   return <section className={container}>
     <h2 className={title}>Recent activity</h2>
-    {isPending ? <em>Loading...</em> : history?.map((item, key) => <ul key={key} className={list}>
+    <button className={btn} onClick={(e) => fetchAll(e)} title="Load previous history">^</button>
+    {isPending ? <em>Loading...</em> : history?.reverse().map((item, key) => <ul key={key} className={list}>
       <li>
+        <p style={{color: item.transaction_type === "SELL" ? "green" : "red"}}>{item.transaction_type === "SELL" ? "+" : "-"} ${(item.num_shares * item.price).toLocaleString("en-US")}</p>
         <p>{item.symbol}</p>
-        <p>{item.transaction_type === "SELL" ? "+" : "-"} ${(item.num_shares * item.price).toLocaleString("en-US")}</p>
+        <p className={list__time}>{`${new Date(item.time)}`}</p>
       </li>
     </ul>)}
   </section>

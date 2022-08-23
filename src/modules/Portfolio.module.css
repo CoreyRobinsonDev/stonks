@@ -1,11 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  place-items: center;
+ 
 }
 
 .portfolio__body {
   display: flex;
   flex-wrap: wrap;
+  gap: 8rem;
   justify-content: center;
 }

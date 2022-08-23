@@ -9,7 +9,8 @@ export type History = {
   symbol: string,
   price: number,
   num_shares: number,
-  transaction_type: string
+  transaction_type: string,
+  time: number
 }
 
 export type Data = {
