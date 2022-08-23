@@ -14,7 +14,7 @@ const TickerDetails: React.FC<Props> = ({ details }) => {
       <h2 className={TickerDetailsCSS.ticker__price}>{details?.close} <small>{result?.currency_name}</small></h2>
       <h1 className={TickerDetailsCSS.ticker__title}>{result?.name}</h1>
       <p className={TickerDetailsCSS.ticker__tag}>{result?.sic_description}</p>
-      <a href={result?.homepage_url} target="_blank" rel="noreferrer">{result?.homepage_url}</a>
+      <a className={TickerDetailsCSS.ticker__link} href={result?.homepage_url} target="_blank" rel="noreferrer">{result?.homepage_url}</a>
       <p className={TickerDetailsCSS.ticker__description}>{result?.description}</p>
       <ul className={TickerDetailsCSS.ticker__list}>
         <li><b>Ticker:</b> {result?.ticker}</li>

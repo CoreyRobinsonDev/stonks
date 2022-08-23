@@ -13,3 +13,7 @@
 .list__item {
   color: white;
 }
+
+.list__item:active {
+  color: var(--secondary-color);
+}

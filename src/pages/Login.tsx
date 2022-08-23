@@ -4,16 +4,27 @@ import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { setUser } from "../app/features/userSlice";
+import LoginCSS from "../modules/Login.module.css";
 
 const Login = () => {
   const [username, setUsername] = useState<string>("Guest");
   const [password, setPassword] = useState<string>("guest");
+  const [isGuest, setIsGuest] = useState(false);
   const user = useAppSelector(state => state.user.loggedUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isGuest) {
+     await axios.post("/register", {
+        username,
+        password,
+        confirmPassword: password
+      })
+    }
+
     axios.post("/login", {
       username,
       password
@@ -22,25 +33,29 @@ const Login = () => {
       navigate("/home");
     })
   }
+
   const setGuest = () => {
-    setUsername("Guest");
+    setUsername(`Guest${new Date().getTime().toString()}`);
     setPassword("guest");
+    setIsGuest(true);
   }
 
-  return <section>
+  return <section className={LoginCSS.container}>
     {user && <Navigate to="/home" />}
-    <h1>Log In</h1>
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="username">Username:</label>
-      <input id="username" type="text" onChange={(e) => setUsername(e.target.value)} />
-      <label htmlFor="password">Password:</label>
-      <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
-      <input type="submit" value="Log In" />
-      <button onClick={setGuest}>Continue as "Guest"</button>
+    <form className={LoginCSS.form} onSubmit={(e) => handleSubmit(e)}>
+    <h1 className={LoginCSS.title}>Log In</h1>
+      <label htmlFor="username">Username:
+        <input className={LoginCSS.form__input} id="username" type="text" onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <label htmlFor="password">Password:
+        <input className={LoginCSS.form__input} id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
+      </label>
+      <input className={`${LoginCSS.form__btn_submit} ${LoginCSS.form__btn}`} type="submit" value="Log In" />
+      <button className={LoginCSS.form__btn} onClick={setGuest}>Continue as "Guest"</button>
     </form>
-    <div>
+    <div className={LoginCSS.footer}>
       <p>Don't have an account?</p>
-      <Link to="/register">Register</Link>
+      <Link className={LoginCSS.register} to="/register">Register</Link>
     </div>
   </section>
 }

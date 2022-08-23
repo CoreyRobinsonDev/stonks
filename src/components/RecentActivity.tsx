@@ -17,7 +17,7 @@ const RecentActivity = () => {
     axios.post("/user/getRecentHistory", { user_id: user?.id })
     .then((res) => {
       setIsPending(false);
-      setHistory(res.data);
+      setHistory(res.data?.reverse());
     })
   }, [user])
 
@@ -28,14 +28,14 @@ const RecentActivity = () => {
     axios.post("/user/getAllHistory", { user_id: user?.id })
       .then((res) => {
         setIsPending(false);
-        setHistory(res.data);
+        setHistory(res.data?.reverse());
     })
   }
 
   return <section className={container}>
     <h2 className={title}>Recent activity</h2>
     <button className={btn} onClick={(e) => fetchAll(e)} title="Load previous history">^</button>
-    {isPending ? <em>Loading...</em> : history?.reverse().map((item, key) => <ul key={key} className={list}>
+    {isPending ? <em>Loading...</em> : history?.map((item, key) => <ul key={key} className={list}>
       <li>
         <p style={{color: item.transaction_type === "SELL" ? "green" : "red"}}>{item.transaction_type === "SELL" ? "+" : "-"} ${(item.num_shares * item.price).toLocaleString("en-US")}</p>
         <p>{item.symbol}</p>

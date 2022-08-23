@@ -38,10 +38,10 @@
 
 .header__tag {
   font-size: 1.1rem;
-  background-color: #333;
+  background-color: var(--bg-color);
   color: white;
   border-radius: var(--radius);
-  padding: 0 1rem;
+  padding: .2rem 1rem;
 }
 
 .header__title {

@@ -47,8 +47,9 @@ function App() {
         <Route path="*" element={<Error/>} />
       </Routes>
     </main>
-    <footer>
+    <footer className="app__footer">
       <small>This site was created for educational purposes and is not meant to be a functional service. All data is provided by Polygon.io's free api, which is limited to 5 requests per minute.</small>
+      <small><a href="https://github.com/CoreyRobinsonDev/stonks" target="_blank" rel="noreferrer">{"<View Code>"}</a></small>
     </footer>
   </>
 }

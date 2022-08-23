@@ -17,15 +17,23 @@
 }
 
 .ticker__price {
+  color: var(--bg-color);
   font-size: 4rem;
 }
 
 .ticker__title {
+  font-size: 3rem;
   border-bottom: 2px solid;
 }
 
 .ticker__tag {
   font-size: 1.2rem;
+}
+
+.ticker__link {
+  font-weight: bold;
+  border-bottom: 1px solid;
+  width: fit-content;
 }
 
 .ticker__list {

@@ -3,6 +3,7 @@ import { useNavigate, Navigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import { useAppSelector } from "../util/hooks";
+import RegisterCSS from "../modules/Register.module.css";
 
 const Register = () => {
   const [username, setUsername] = useState<null | string>(null);
@@ -21,22 +22,32 @@ const Register = () => {
     }).then(() => navigate("/"))
     .catch((err) => setAlert(err.response.data))
   }
-  return <section className="container">
+
+  return <section className={RegisterCSS.container}>
     {user && <Navigate to="/home" />}
-    <h1 className="title">Register</h1>
-    <form className="form__container" onSubmit={(e) => handleSubmit(e)}>
-      <label htmlFor="username">Username:</label>
-      <input id="username" type="text" onChange={(e) => setUsername(e.target.value)} autoFocus required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
-      <label htmlFor="confirm-password">Confirm Password:</label>
-      <input id="confirm-password" type="password" onChange={(e) => setConfirmedPassword(e.target.value)} required />
-      <input type="submit" value="Register" />
+    <form className={RegisterCSS.form} onSubmit={(e) => handleSubmit(e)}>
+    <h1 className={RegisterCSS.title}>Register</h1>
+      <label htmlFor="username">Username:
+        <input
+          style={{border: `${alert === "Username Already Exists" ? "1px solid red" : "1px solid"}`}}
+          className={RegisterCSS.form__input} id="username" type="text" onChange={(e) => setUsername(e.target.value)} autoFocus required />
+      </label>
+      <label htmlFor="password">Password:
+        <input
+          style={{border: `${alert === "Passwords Don't Match" ? "1px solid red" : "1px solid"}`}}
+          className={RegisterCSS.form__input} id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+      </label>
+      <label htmlFor="confirm-password">Confirm Password:
+        <input
+          style={{border: `${alert === "Passwords Don't Match" ? "1px solid red" : "1px solid"}`}}
+          className={RegisterCSS.form__input} id="confirm-password" type="password" onChange={(e) => setConfirmedPassword(e.target.value)} required />
+      </label>
+      <small className={RegisterCSS.alert}>{alert}</small>
+      <input className={RegisterCSS.form__btn} type="submit" value="Register" />
     </form>
-    <span>{alert}</span>
-    <div>
+    <div className={RegisterCSS.footer}>
       <p>Already have an account?</p>
-      <Link to="/">Log In</Link>
+      <Link className={RegisterCSS.login} to="/">Log In</Link>
     </div>
   </section>
 }
