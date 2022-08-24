@@ -12,7 +12,7 @@ const Doughnut = () => {
   const [portfolio, setPortfolio] = useState<PortfolioType>();
   const [active, setActive] = useState<Data | null>(null);
   let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-  width = width > 1400 ? width / 3 : width / 1.1;
+  width = width > 1400 ? width / 3 : width / 1.2;
   const half = width / 2;
 
   useEffect(() => {
