@@ -42,7 +42,7 @@ const Doughnut = () => {
             onMouseEnter={() => setActive(arc.data)}
             onMouseLeave={() => setActive(null)}
           >
-            <path d={pie.path(arc)} fill={arc.data.color}></path>
+            <path d={pie.path(arc)!} fill={arc.data.color}></path>
           </g>)
         }}
       </Pie>
