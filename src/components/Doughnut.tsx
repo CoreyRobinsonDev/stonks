@@ -6,20 +6,28 @@ import { Text } from "@visx/text";
 
 import { useAppSelector } from "../util/hooks";
 import { PortfolioType, Data } from "../util/types";
+import LoadingDots from "./LoadingDots";
 
 const Doughnut = () => {
   const user = useAppSelector(state => state.user.loggedUser);
   const [portfolio, setPortfolio] = useState<PortfolioType>();
   const [active, setActive] = useState<Data | null>(null);
+  const [isPending, setIsPending] = useState(false);
   let width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   width = width > 1400 ? width / 3 : width / 1.2;
   const half = width / 2;
 
   useEffect(() => {
+    setIsPending(true);
     axios.post("/user/getPortfolio", { id: user?.id })
-    .then((res) => setPortfolio(res.data))
+      .then((res) => {
+        setIsPending(false);
+        setPortfolio(res.data);
+      })
   }, [user])
 
+  if (isPending) return <LoadingDots />;
+  
   return <svg width={width} height={width}>
     <Group top={half} left={half}>
       <Pie

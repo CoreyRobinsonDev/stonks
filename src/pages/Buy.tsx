@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "../util/hooks";
 import { updateBalance } from "../app/features/userSlice";
 import BuyCSS from "../modules/Buy.module.css";
 import AccountDetails from "../components/AccountDetails";
+import LoadingDots from "../components/LoadingDots";
 
 const Buy = () => {
   const [symbol, setSymbol] = useState<null | string>(null);
@@ -44,7 +45,7 @@ const Buy = () => {
           style={{border: message === "Shares must be in positive integer amounts" ? "1px solid red" : "1px solid"}}
           className={BuyCSS.input} id="shares" type="number" min="1" onChange={(e) => setShares(e.target.value)} required />
       </label>
-      <small className={`${BuyCSS.message} ${message === "Invalid ticker symbol" || message === "Shares must be in positive integer amounts" || message === "Insufficient funds" ? BuyCSS.alert : ""}`}>{isPending ? <em>Processing...</em> : message}</small>
+      <small className={`${BuyCSS.message} ${message === "Invalid ticker symbol" || message === "Shares must be in positive integer amounts" || message === "Insufficient funds" ? BuyCSS.alert : ""}`}>{isPending ? <LoadingDots/> : message}</small>
       <input className={`${BuyCSS.btn} hover`} type="submit" value="Buy" />
     </form>
   </section>

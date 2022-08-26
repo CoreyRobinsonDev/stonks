@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector } from "../util/hooks";
 import { History } from "../util/types";
 import RecentActivityCSS from "../modules/RecentActivity.module.css";
+import LoadingDots from "./LoadingDots";
 
 const RecentActivity = () => {
   const user = useAppSelector(state => state.user.loggedUser);
@@ -21,7 +22,6 @@ const RecentActivity = () => {
 
   const fetchAll = (e: any) => {
     setIsPending(true);
-    e.target.style.display = "none";
 
     axios.post("/user/getAllHistory", { user_id: user?.id })
       .then((res) => {
@@ -29,6 +29,8 @@ const RecentActivity = () => {
         setHistory(res.data?.reverse());
     })
   }
+
+  if (isPending) return <LoadingDots />;
 
   return <section className={RecentActivityCSS.container}>
     <h2 className={RecentActivityCSS.title}>Recent activity</h2>

@@ -1,19 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "../util/hooks";
 import { advanceGroupedDailyBarsLimited, setGroupedDailyBars, sortBy } from "../app/features/stocksSlice";
 import GDBarsCSS from "../modules/GroupedDailyBars.module.css";
+import LoadingDots from "./LoadingDots";
 
 const { container, table, table__head, table__body, btn } = GDBarsCSS;
 
 const GroupedDailyBars = () => {
   const results = useAppSelector(state => state.stocks.groupedDailyBars?.limitedResults);
   const dispatch = useAppDispatch();
+  const [isPending, setIsPending] = useState(false);
  
   useEffect(() => {
+    setIsPending(true);
     axios.get("/stocks/groupedDailyBars")
-    .then((res) => dispatch(setGroupedDailyBars(res.data)))
+      .then((res) => {
+        setIsPending(false);
+        dispatch(setGroupedDailyBars(res.data));
+      })
   }, [dispatch])
 
   
@@ -22,6 +28,8 @@ const GroupedDailyBars = () => {
     e.target.style.color = "#ED992A";
     dispatch(sortBy(sort));
   }
+
+  if (isPending) return <LoadingDots />;
 
   return <section className={container}>
     <table className={table}>
