@@ -1,17 +1,15 @@
-import { TickerDetails as TickerDetailsType } from "../util/types";
 import TickerDetailsCSS from "../modules/TickerDetails.module.css";
+import { useAppSelector } from "../util/hooks";
 
-type Props = {
-  details: TickerDetailsType | undefined
-}
-const TickerDetails: React.FC<Props> = ({ details }) => {
-  const result = details?.results;
+const TickerDetails = () => {
+  const tickerDetails = useAppSelector(state => state.stocks.tickerDetails);
+  const result = tickerDetails?.results;
 
   return <>
     {result ?
     <div className={TickerDetailsCSS.container}>
       <img className={TickerDetailsCSS.img} src={result?.branding?.icon_url} alt="Branding icon" />
-      <h2 className={TickerDetailsCSS.ticker__price}>{details?.close} <small>{result?.currency_name}</small></h2>
+      <h2 className={TickerDetailsCSS.ticker__price}>{tickerDetails?.close} <small>{result?.currency_name}</small></h2>
       <h1 className={TickerDetailsCSS.ticker__title}>{result?.name}</h1>
       <p className={TickerDetailsCSS.ticker__tag}>{result?.sic_description}</p>
       <a className={TickerDetailsCSS.ticker__link} href={result?.homepage_url} target="_blank" rel="noreferrer">{result?.homepage_url}</a>

@@ -28,7 +28,7 @@ const Doughnut = () => {
 
   if (isPending) return <LoadingDots />;
   
-  return <svg width={width} height={width}>
+  return <svg width={width} height={width} style={{backgroundColor: "#fff", borderRadius: "50%"}}>
     <Group top={half} left={half}>
       <Pie
         data={portfolio}

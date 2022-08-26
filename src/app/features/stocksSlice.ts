@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GroupedDailyBarsResults } from "../../util/types";
+import { GroupedDailyBarsResults, TickerDetails, TickerNews } from "../../util/types";
 
 
 type SliceState = {
@@ -8,7 +8,9 @@ type SliceState = {
     index: number,
     all: GroupedDailyBarsResults[] | null,
     limitedResults: GroupedDailyBarsResults[] | null
-  } 
+  },
+  tickerDetails: TickerDetails | null,
+  tickerNews: TickerNews | null
 }
 
 const initialState: SliceState = {
@@ -17,7 +19,9 @@ const initialState: SliceState = {
     index: 100,
     all: null,
     limitedResults: null
-  }
+  },
+  tickerDetails: null,
+  tickerNews: null
 }
 
 const stocksSlice = createSlice({
@@ -27,6 +31,12 @@ const stocksSlice = createSlice({
     setGroupedDailyBars: (state, { payload }) => {
       state.groupedDailyBars.all = payload;
       state.groupedDailyBars.limitedResults = payload.slice(0, state.groupedDailyBars.index);
+    },
+    setTickerDetails: (state, { payload }) => {
+      state.tickerDetails = payload;
+    },
+    setTickerNews: (state, { payload }) => {
+      state.tickerNews = payload;
     },
     advanceGroupedDailyBarsLimited: (state) => {
       state.groupedDailyBars.index += 100;
@@ -99,5 +109,5 @@ const stocksSlice = createSlice({
   }
 });
 
-export const { setGroupedDailyBars, advanceGroupedDailyBarsLimited, sortBy } = stocksSlice.actions;
+export const { setGroupedDailyBars, advanceGroupedDailyBarsLimited, sortBy, setTickerDetails, setTickerNews } = stocksSlice.actions;
 export const stocksReducer = stocksSlice.reducer; 

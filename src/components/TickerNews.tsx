@@ -1,12 +1,8 @@
-import { TickerNews as TickerNewsType } from "../util/types";
 import TickerNewsCSS from "../modules/TickerNews.module.css";
+import { useAppSelector } from "../util/hooks";
 
-type Props = {
-  news: TickerNewsType | undefined
-}
-
-const TickerNews: React.FC<Props> = ({ news }) => {
-  const result = news?.results;
+const TickerNews = () => {
+  const result = useAppSelector(state => state.stocks.tickerNews?.results);
 
   if (result) return <section className={TickerNewsCSS.container}>
     {result?.map((story) => <article className={TickerNewsCSS.article__container}>

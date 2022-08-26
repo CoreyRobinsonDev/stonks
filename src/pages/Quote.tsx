@@ -4,15 +4,15 @@ import axios from "axios";
 import TickerDetails from "../components/TickerDetails";
 import TickerNews from "../components/TickerNews";
 import QuoteCSS from "../modules/Quote.module.css";
-import { is } from "immer/dist/internal";
 import LoadingDots from "../components/LoadingDots";
+import { setTickerDetails, setTickerNews } from "../app/features/stocksSlice";
+import { useAppDispatch } from "../util/hooks";
 
 const Quote = () => {
   const [ticker, setTicker] = useState("");
-  const [tickerDetails, setTickerDetails] = useState();
-  const [tickerNews, setTickerNews] = useState();
   const [alert, setAlert] = useState("");
   const [isPending, setIsPending] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,8 +21,8 @@ const Quote = () => {
       .then((res) => {
         setAlert("");
         setIsPending(false);
-        setTickerDetails(res.data.tickerDetails);
-        setTickerNews(res.data.tickerNews);
+        dispatch(setTickerDetails(res.data.tickerDetails));
+        dispatch(setTickerNews(res.data.tickerNews));
     })
       .catch((err) => {
         setIsPending(false);
@@ -32,13 +32,15 @@ const Quote = () => {
   
   return <section className={QuoteCSS.container}>
     <form className={QuoteCSS.form} onSubmit={(e) => handleSubmit(e)}>
-      <input className={QuoteCSS.form__input} type="text" placeholder="Ticker Symbol" onChange={(e) => setTicker(e.target.value)} required />
+      <input
+        style={{border: alert === "Invalid Ticker" ? "1px solid red" : "1px solid"}}
+        className={QuoteCSS.form__input} type="text" placeholder="Ticker Symbol" onChange={(e) => setTicker(e.target.value)} required />
       <input className={`${QuoteCSS.form__submit} hover`} type="submit" value="Enter" />
       <p className={QuoteCSS.form__alert}>{alert}</p>
     </form>
     <div className={QuoteCSS.quote__body}>
-      {isPending ? <LoadingDots/> : <TickerDetails details={tickerDetails} /> }
-      {isPending ? <LoadingDots/> : <TickerNews news={tickerNews} />}
+      {isPending ? <LoadingDots/> : <TickerDetails/> }
+      {isPending ? <LoadingDots/> : <TickerNews/>}
     </div>
   </section>
 }
