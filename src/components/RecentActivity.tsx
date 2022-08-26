@@ -32,11 +32,12 @@ const RecentActivity = () => {
 
   return <section className={RecentActivityCSS.container}>
     <h2 className={RecentActivityCSS.title}>Recent activity</h2>
-    {history?.length ? <button className={RecentActivityCSS.btn} onClick={(e) => fetchAll(e)} title="Load previous history">^</button> : <em>No transaction history...</em>}
+    {history?.length ? <button className={RecentActivityCSS.btn} onClick={(e) => fetchAll(e)} title="Load previous history">+</button> : <em>No transaction history...</em>}
     {isPending ? <em>Loading...</em> : history?.map((item, key) => <ul key={key} className={RecentActivityCSS.list}>
       <li>
-        <p style={{color: item.transaction_type === "SELL" ? "green" : "red"}}>{item.transaction_type === "SELL" ? "+" : "-"} ${(item.num_shares * item.price).toLocaleString("en-US")}</p>
-        <p>{item.symbol}</p>
+        <p className={RecentActivityCSS.list__money} style={{ color: item.transaction_type === "SELL" ? "green" : "red" }}>{item.transaction_type === "SELL" ? "+" : "-"} ${(item.num_shares * item.price).toLocaleString("en-US")}</p>
+          <p>{item.transaction_type}</p>
+          <p>{item.symbol}</p>
         <p className={RecentActivityCSS.list__time}>{`${new Date(item.time)}`}</p>
       </li>
     </ul>)}

@@ -17,9 +17,15 @@
 }
 
 .list li{
-  display: grid;
-  grid-template-columns: 1fr .5fr .5fr;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
   font-size: 2rem;
+}
+
+.list__money {
+  width: 15ch; 
 }
 
 .list__time {
@@ -36,4 +42,10 @@
   margin-bottom: 2rem;
   border-radius: var(--radius);
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 800px) { 
+  .list__time {
+    display: none;
+  }
 }

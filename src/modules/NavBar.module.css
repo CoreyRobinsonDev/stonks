@@ -12,8 +12,23 @@
 
 .list__item {
   color: white;
+  padding: 0 1rem;
 }
 
 .list__item:active {
   color: var(--secondary-color);
+}
+
+.mobile_list {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) { 
+  .mobile_list {
+    display: flex;
+  }
+
+  .desktop_list {
+    display: none;
+  }
 }

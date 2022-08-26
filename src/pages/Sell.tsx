@@ -41,7 +41,7 @@ const Sell = () => {
       </label>
       <label htmlFor="shares">Number of Shares:
         <input
-          style={{border: message === "Shares must be in positive integer amounts" ? "1px solid red" : "1px solid"}}
+          style={{border: message === "Shares must be in positive integer amounts" || message === "Insufficient shares" ? "1px solid red" : "1px solid"}}
           className={SellCSS.input} id="shares" type="number" min="1" onChange={(e) => setShares(e.target.value)} required />
       </label>
       <small className={`${SellCSS.message} ${message === "Invalid ticker symbol" || message === "Insufficient shares" || message === "Shares must be in positive integer amounts" ? SellCSS.alert : ""}`}>{isPending ? <em>Processing...</em> : message}</small>
