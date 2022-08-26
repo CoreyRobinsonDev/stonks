@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../util/hooks";
 import { setUser } from "../app/features/userSlice";
+import SettingsCSS from "../modules/Settings.module.css";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ const Settings = () => {
     navigate("/");
   }
 
-  return <section>
+  return <section className={SettingsCSS.container}>
     <ul>
-      <li><button onClick={logout}>Log Out</button></li>
+      <li><button className={`${SettingsCSS.logout_btn} hover`} onClick={logout}>Log Out</button></li>
     </ul>
   </section>
 }

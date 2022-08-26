@@ -27,14 +27,14 @@ const GroupedDailyBars = () => {
     <table className={table}>
       <thead className={table__head}>
         <tr>
-          <th onClick={(e) => handleClick(e, "ticker")}>Ticker</th>
-          <th onClick={(e) => handleClick(e, "open")}>Open</th>
-          <th onClick={(e) => handleClick(e, "close")}>Close</th>
-          <th onClick={(e) => handleClick(e, "high")}>High</th>
-          <th onClick={(e) => handleClick(e, "low")}>Low</th>
-          <th onClick={(e) => handleClick(e, "transactions")}># of Transactions</th>
-          <th onClick={(e) => handleClick(e, "volume")}>Trading Volume</th>
-          <th onClick={(e) => handleClick(e, "price")}>Volume Weighted Price</th>
+          <th className="hover" onClick={(e) => handleClick(e, "ticker")}>Ticker</th>
+          <th className="hover" onClick={(e) => handleClick(e, "open")}>Open</th>
+          <th className="hover" onClick={(e) => handleClick(e, "close")}>Close</th>
+          <th className="hover" onClick={(e) => handleClick(e, "high")}>High</th>
+          <th className="hover" onClick={(e) => handleClick(e, "low")}>Low</th>
+          <th className="hover" onClick={(e) => handleClick(e, "transactions")}># of Transactions</th>
+          <th className="hover" onClick={(e) => handleClick(e, "volume")}>Trading Volume</th>
+          <th className="hover" onClick={(e) => handleClick(e, "price")}>Volume Weighted Price</th>
         </tr>
       </thead>
       <tbody className={table__body}>

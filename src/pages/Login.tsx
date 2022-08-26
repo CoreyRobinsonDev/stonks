@@ -50,12 +50,12 @@ const Login = () => {
       <label htmlFor="password">Password:
         <input className={LoginCSS.form__input} id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
       </label>
-      <input className={`${LoginCSS.form__btn_submit} ${LoginCSS.form__btn}`} type="submit" value="Log In" />
-      <button className={LoginCSS.form__btn} onClick={setGuest}>Continue as "Guest"</button>
+      <input className={`${LoginCSS.form__btn_submit} ${LoginCSS.form__btn} hover`} type="submit" value="Log In" />
+      <button className={`${LoginCSS.form__btn} hover`} onClick={setGuest}>Continue as "Guest"</button>
     </form>
     <div className={LoginCSS.footer}>
       <p>Don't have an account?</p>
-      <Link className={LoginCSS.register} to="/register">Register</Link>
+      <Link className={`${LoginCSS.register} hover`} to="/register">Register</Link>
     </div>
   </section>
 }

@@ -3,7 +3,6 @@
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(23ch, 46ch));
-  
   margin: 2rem 0;
   gap: 1rem;
 }
@@ -16,7 +15,7 @@
   box-shadow: 1px 2px 10px rgb(0, 0, 0, 0.2);
   padding: 2rem;
   color: #333;
-  height: fill-content;
+  height: fit-content;
 }
 
 .header__container {

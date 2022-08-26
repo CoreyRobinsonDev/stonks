@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin: 0 auto;
+  width: fit-content;
+  box-shadow: 1px 2px 10px rgb(0, 0, 0, 0.2);
+} 
+
+
+.link {
+  font-size: 2rem;
+  color: var(--text-color);
+}

@@ -19,6 +19,7 @@
   border-radius: 5px;
   padding: 0 .5rem;
   margin-right: 2rem;
+  max-width: 100%;
 }
 
 .form__input::placeholder {
@@ -29,7 +30,8 @@
   font-size: 2rem;
   font-family: "Roboto Mono", monospace;
   border: none;
-  border-bottom: 1px solid;
+  padding: 0 1rem;
+  color: var(--text-color);
   background-color: white;
 }
 

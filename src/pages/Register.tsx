@@ -43,11 +43,11 @@ const Register = () => {
           className={RegisterCSS.form__input} id="confirm-password" type="password" onChange={(e) => setConfirmedPassword(e.target.value)} required />
       </label>
       <small className={RegisterCSS.alert}>{alert}</small>
-      <input className={RegisterCSS.form__btn} type="submit" value="Register" />
+      <input className={`${RegisterCSS.form__btn} hover`} type="submit" value="Register" />
     </form>
     <div className={RegisterCSS.footer}>
       <p>Already have an account?</p>
-      <Link className={RegisterCSS.login} to="/">Log In</Link>
+      <Link className={`${RegisterCSS.login} hover`} to="/">Log In</Link>
     </div>
   </section>
 }

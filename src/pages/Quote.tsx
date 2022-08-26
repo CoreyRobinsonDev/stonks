@@ -25,7 +25,7 @@ const Quote = () => {
   return <section className={QuoteCSS.container}>
     <form className={QuoteCSS.form} onSubmit={(e) => handleSubmit(e)}>
       <input className={QuoteCSS.form__input} type="text" placeholder="Ticker Symbol" onChange={(e) => setTicker(e.target.value)} required />
-      <input className={QuoteCSS.form__submit} type="submit" value="Enter" />
+      <input className={`${QuoteCSS.form__submit} hover`} type="submit" value="Enter" />
       <p className={QuoteCSS.form__alert}>{alert}</p>
     </form>
     <div className={QuoteCSS.quote__body}>
