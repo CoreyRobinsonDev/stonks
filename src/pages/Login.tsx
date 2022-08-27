@@ -19,6 +19,7 @@ const Login = () => {
 
     if (isGuest) {
       await axios({
+        method: "POST",
         url: "https://stonks-crd.herokuapp.com/register",
         data: {
           username,
@@ -27,7 +28,8 @@ const Login = () => {
         },
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          'Access-Control-Allow-Methods': '*',
+          'Access-Control-Allow-Headers': "Content-Type, Authorization"
         },
       })
     }
