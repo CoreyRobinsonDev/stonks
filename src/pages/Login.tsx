@@ -18,10 +18,17 @@ const Login = () => {
     e.preventDefault();
 
     if (isGuest) {
-     await axios.post("https://stonks-crd.herokuapp.com/register", {
-        username,
-        password,
-        confirmPassword: password
+      await axios({
+        url: "https://stonks-crd.herokuapp.com/register",
+        data: {
+          username,
+          password,
+          confirmPassword: password
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
       })
     }
 
