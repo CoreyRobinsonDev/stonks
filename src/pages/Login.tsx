@@ -27,6 +27,9 @@ const Login = () => {
           password,
           confirmPassword: password
         },
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
       })
     }
 
