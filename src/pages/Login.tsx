@@ -21,7 +21,6 @@ const Login = () => {
       await axios({
         method: "POST",
         url: "https://stonks-crd.herokuapp.com/register",
-        withCredentials: true,
         data: {
           username,
           password,
@@ -32,7 +31,6 @@ const Login = () => {
 
     axios({
       method: "POST",
-      withCredentials: true,
       url: "https://stonks-crd.herokuapp.com/login",
       data: {
         username,
