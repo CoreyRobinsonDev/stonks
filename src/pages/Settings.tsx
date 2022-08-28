@@ -9,8 +9,8 @@ const Settings = () => {
   const dispatch = useAppDispatch();
 
   const logout = () => {
-    axios.post("/logout");
-    axios.post("/guest/reset");
+    axios.post("https://stonks-crd.herokuapp.com/logout");
+    axios.post("https://stonks-crd.herokuapp.com/guest/reset");
     dispatch(setUser(null));
     navigate("/");
   }

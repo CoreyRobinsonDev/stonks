@@ -18,7 +18,7 @@ const Buy = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsPending(true);
-    axios.post("/stocks/buy", {
+    axios.post("https://stonks-crd.herokuapp.com/stocks/buy", {
       user_id: userId,
       num_shares: shares,
       symbol: symbol?.trim().toUpperCase()

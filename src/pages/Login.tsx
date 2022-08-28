@@ -18,24 +18,16 @@ const Login = () => {
     e.preventDefault();
 
     if (isGuest) {
-      await axios({
-        method: "POST",
-        url: "https://stonks-crd.herokuapp.com/register",
-        data: {
+      await axios.post("https://stonks-crd.herokuapp.com/register", {
           username,
           password,
           confirmPassword: password
-        },
-      })
+        })
     }
 
-    axios({
-      method: "POST",
-      url: "https://stonks-crd.herokuapp.com/login",
-      data: {
+    axios.post("https://stonks-crd.herokuapp.com/login", {
         username,
         password
-      }
       }).then((res) => {
       dispatch(setUser(res.data));
       navigate("/home");

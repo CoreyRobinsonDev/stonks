@@ -17,7 +17,7 @@ const Quote = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsPending(true);
-    axios.post("/stocks/tickerDetails", { ticker: ticker.trim().toUpperCase() })
+    axios.post("https://stonks-crd.herokuapp.com/stocks/tickerDetails", { ticker: ticker.trim().toUpperCase() })
       .then((res) => {
         setAlert("");
         setIsPending(false);

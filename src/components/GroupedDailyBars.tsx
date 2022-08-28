@@ -15,7 +15,7 @@ const GroupedDailyBars = () => {
  
   useEffect(() => {
     setIsPending(true);
-    axios.get("/stocks/groupedDailyBars")
+    axios.get("https://stonks-crd.herokuapp.com/stocks/groupedDailyBars")
       .then((res) => {
         setIsPending(false);
         dispatch(setGroupedDailyBars(res.data));

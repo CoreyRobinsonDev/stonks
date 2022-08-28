@@ -15,7 +15,7 @@ const Register = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios.post("/register", {
+    axios.post("https://stonks-crd.herokuapp.com/register", {
       username,
       password,
       confirmPassword

@@ -19,7 +19,7 @@ const Doughnut = () => {
 
   useEffect(() => {
     setIsPending(true);
-    axios.post("/user/getPortfolio", { id: user?.id })
+    axios.post("https://stonks-crd.herokuapp.com/user/getPortfolio", { id: user?.id })
       .then((res) => {
         setIsPending(false);
         setPortfolio(res.data);

@@ -22,7 +22,7 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    axios.get("/user/getLoggedUser")
+    axios.get("https://stonks-crd.herokuapp.com/user/getLoggedUser")
       .then((res) => dispatch(setUser(res.data)))
   }, [dispatch])
 

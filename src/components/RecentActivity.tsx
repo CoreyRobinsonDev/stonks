@@ -13,7 +13,7 @@ const RecentActivity = () => {
 
   useEffect(() => {
     setIsPending(true);
-    axios.post("/user/getRecentHistory", { user_id: user?.id })
+    axios.post("https://stonks-crd.herokuapp.com/user/getRecentHistory", { user_id: user?.id })
     .then((res) => {
       setIsPending(false);
       setHistory(res.data?.reverse());
@@ -23,7 +23,7 @@ const RecentActivity = () => {
   const fetchAll = (e: any) => {
     setIsPending(true);
 
-    axios.post("/user/getAllHistory", { user_id: user?.id })
+    axios.post("https://stonks-crd.herokuapp.com/user/getAllHistory", { user_id: user?.id })
       .then((res) => {
         setIsPending(false);
         setHistory(res.data?.reverse());
