@@ -7,8 +7,8 @@ import { setUser } from "../app/features/userSlice";
 import LoginCSS from "../modules/Login.module.css";
 
 const Login = () => {
-  const [username, setUsername] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isGuest, setIsGuest] = useState(false);
   const user = useAppSelector(state => state.user.loggedUser);
   const dispatch = useAppDispatch();
