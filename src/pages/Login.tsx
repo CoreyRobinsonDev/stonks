@@ -55,10 +55,10 @@ const Login = () => {
     <form className={LoginCSS.form} onSubmit={(e) => handleSubmit(e)}>
     <h1 className={LoginCSS.title}>Log In</h1>
       <label htmlFor="username">Username:
-        <input className={LoginCSS.form__input} id="username" type="text" onChange={(e) => setUsername(e.target.value)} required />
+        <input className={LoginCSS.form__input} id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
       </label>
       <label htmlFor="password">Password:
-        <input className={LoginCSS.form__input} id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+        <input className={LoginCSS.form__input} id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </label>
       <input className={`${LoginCSS.form__btn_submit} ${LoginCSS.form__btn} hover`} type="submit" value="Log In" />
       <button className={`${LoginCSS.form__btn} hover`} onClick={setGuest}>Continue as "Guest"</button>
