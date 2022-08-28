@@ -21,23 +21,24 @@ const Login = () => {
       await axios({
         method: "POST",
         url: "https://stonks-crd.herokuapp.com/register",
+        withCredentials: true,
         data: {
           username,
           password,
           confirmPassword: password
         },
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': '*',
-          "Content-Type": "Authorization"
-        },
       })
     }
 
-    axios.post("https://stonks-crd.herokuapp.com/login", {
-      username,
-      password
-    }).then((res) => {
+    axios({
+      method: "POST",
+      withCredentials: true,
+      url: "https://stonks-crd.herokuapp.com/login",
+      data: {
+        username,
+        password
+      }
+      }).then((res) => {
       dispatch(setUser(res.data));
       navigate("/home");
     })
