@@ -15,7 +15,7 @@ const Register = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios.post("https://stonks-crd.herokuapp.com/register", {
+    axios.post("https://stonks-backend-vm5v.vercel.app/register", {
       username,
       password,
       confirmPassword

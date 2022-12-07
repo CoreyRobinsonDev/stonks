@@ -18,14 +18,14 @@ const Login = () => {
     e.preventDefault();
 
     if (isGuest) {
-      await axios.post("https://stonks-crd.herokuapp.com/register", {
+      await axios.post("https://stonks-backend-vm5v.vercel.app/register", {
           username,
           password,
           confirmPassword: password
         })
     }
 
-    axios.post("https://stonks-crd.herokuapp.com/login", {
+    axios.post("https://stonks-backend-vm5v.vercel.app/login", {
         username,
         password
       }).then((res) => {
